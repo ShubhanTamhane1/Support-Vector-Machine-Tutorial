@@ -60,11 +60,38 @@ y_pred = m1.predict(X_test)
 ```
 
 
+```{python}
+accuracy_score = accuracy_score(y_test, y_pred)
+precision_score = precision_score(y_test, y_pred, pos_label=9)
+f1_score = f1_score(y_test, y_pred, pos_label=9)
+confusion_matrix = confusion_matrix(y_test, y_pred)
+```
+
 Model evaluation. 
 ```{python}
-print("Accuracy Score:", accuracy_score(y_test, y_pred))
-print("Precision Score:", precision_score(y_test, y_pred, pos_label=9))
-print("F1 Score:", f1_score(y_test, y_pred, pos_label=9))
-print("Confusion Matrix:", confusion_matrix(y_test, y_pred))
+print("Accuracy Score:", accuracy_score)
+print("Precision Score:", precision_score)
+print("F1 Score:", f1_score)
+print("Confusion Matrix:", confusion_matrix)
 ```
+
+```{python}
+metrics = ['Accuracy', 'Precision (label = 9)', 'F1 (label = 9)']
+scores = [accuracy_score, precision_score, f1_score]
+
+colors = ['skyblue', 'lightgreen', 'lightcoral']
+
+plt.bar(metrics, scores, color = colors)
+plt.title("Support Vector Machine Classification Results")
+plt.ylabel('Score')
+plt.ylim(0.9,1)
+plt.grid(axis = 'y', color = 'grey', linestyle = '--', alpha = 0.7)
+
+for i, score in enumerate(scores):
+  plt.text(i, score+.02, f'{score:.4f}', ha='center')
+
+plt.legend()
+plt.show()
+```
+
 
